@@ -1,4 +1,4 @@
-package com.bellintegrator.project;
+package ru.bellintegrator.practice;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
