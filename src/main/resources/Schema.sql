@@ -1,53 +1,56 @@
 CREATE TABLE IF NOT EXISTS organization (
-    id            INTEGER  NOT NULL    COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT ,
-    version    INTEGER NOT NULL,
-    name VARCHAR(50) NOT NULL COMMENT 'Имя',
-    fullName VARCHAR(50) NOT NULL COMMENT 'Имя',
-    inn VARCHAR(50) NOT NULL,
-    kpp VARCHAR(50) NOT NULL,
-    address VARCHAR(50)  NOT NULL    COMMENT 'Адрес',
-    phone VARCHAR(50) NOT NULL,
-    isActive BOOLEAN default TRUE
+    id            INTEGER   NOT NULL COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT ,
+    version    INTEGER      NOT NULL COMMENT 'Служебное поле hibernate' ,
+    name VARCHAR(50)        NOT NULL COMMENT 'Наименование организации',
+    fullName VARCHAR(50)    NOT NULL COMMENT 'Полное Наименование огранизации',
+    inn VARCHAR(50)         NOT NULL COMMENT 'ИНН',
+    kpp VARCHAR(50)         NOT NULL COMMENT 'КПП',
+    address VARCHAR(50)     NOT NULL COMMENT 'Адрес организации',
+    phone VARCHAR(50)       NOT NULL COMMENT 'Телефон организации',
+    isActive BOOLEAN        NOT NULL COMMENT 'Активность'
 );
 
 CREATE TABLE IF NOT EXISTS office (
-    id         INTEGER   PRIMARY KEY AUTO_INCREMENT ,
-    version    INTEGER NOT NULL,
-    orgId       INTEGER NOT NULL ,
-    name    VARCHAR(50) NOT NULL ,
-    address VARCHAR(50) NOT NULL ,
-    phone   VARCHAR(50)   NOT NULL ,
-    isActive BOOLEAN default TRUE
+    id         INTEGER      NOT NULL COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT ,
+    version    INTEGER      NOT NULL COMMENT 'Служебное поле hibernate',
+    orgId       INTEGER     NOT NULL COMMENT 'Идентификатор организации',
+    name    VARCHAR(50)     NOT NULL COMMENT 'наименование офиса',
+    address VARCHAR(50)     NOT NULL COMMENT 'Адрес офиса',
+    phone   VARCHAR(50)     NOT NULL COMMENT 'Телефон офиса',
+    isActive BOOLEAN        NOT NULL COMMENT 'Активность'
 );
 
 CREATE TABLE IF NOT EXISTS person (
-    id  INTEGER PRIMARY KEY AUTO_INCREMENT ,
-    version    INTEGER NOT NULL,
-    officeId         INTEGER  NOT NULL ,
-    firstName VARCHAR(50) NOT NULL ,
-    secondName    VARCHAR(50) NOT NULL ,
-    middleName VARCHAR(50) NOT NULL ,
-    position VARCHAR(50) NOT NULL ,
-    phone VARCHAR(50) NOT NULL ,
-    docName VARCHAR(50) NOT NULL ,
-    docNumber INTEGER NOT NULL ,
-    docDate DATE NOT NULL ,
-    citizenshipName VARCHAR(50) NOT NULL ,
-    citizenshipCode INTEGER NOT NULL ,
-    isIdentified BOOLEAN default TRUE
+    id  INTEGER                 NOT NULL COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT ,
+    version    INTEGER          NOT NULL COMMENT 'Служебное поле hibernate',
+    officeId         INTEGER    NOT NULL COMMENT 'Идентификатор офиса',
+    firstName VARCHAR(50)       NOT NULL COMMENT 'Имя',
+    secondName    VARCHAR(50)   NOT NULL COMMENT 'Фамилия',
+    middleName VARCHAR(50)      NOT NULL COMMENT 'Отчество',
+    position VARCHAR(50)        NOT NULL COMMENT 'Должность',
+    phone VARCHAR(50)           NOT NULL COMMENT 'Телефон',
+    docNumber INTEGER           NOT NULL COMMENT 'Номер документа',
+    counties_id INTEGER         NOT NULL COMMENT 'Код страны',
+    isIdentified BOOLEAN        NOT NULL COMMENT 'Проверка'
 
 
 );
 
+CREATE TABLE IF NOT EXISTS doc (
+    code    INTEGER  NOT NULL COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
+    docDate DATE     NOT NULL COMMENT 'Дата выдачи документа',
+    docs_id INTEGER  NOT NULL COMMENT 'Внешний ключ на тип документа'
+);
+
 CREATE TABLE IF NOT EXISTS docs(
-    code INTEGER PRIMARY KEY,
-    name VARCHAR(150) NOT NULL UNIQUE
+    code INTEGER COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT ,
+    name VARCHAR(150) NOT NULL UNIQUE COMMENT 'Наименование документа'
 );
 --здесь типы докуметов
 
 CREATE TABLE IF NOT EXISTS countries(
-    code INTEGER PRIMARY KEY,
-    name VARCHAR(150) NOT NULL UNIQUE
+    code INTEGER COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT ,
+    name VARCHAR(150) NOT NULL UNIQUE COMMENT 'Наименование страны'
 );
 
 
@@ -57,8 +60,9 @@ CREATE INDEX I_officeId ON person (officeId);
 
 ALTER TABLE office ADD FOREIGN KEY (orgId) REFERENCES organization(id);
 ALTER TABLE person ADD FOREIGN KEY (officeId) REFERENCES office(id);
-ALTER TABLE person ADD FOREIGN KEY (citizenshipCode) REFERENCES countries(code);
-ALTER TABLE person ADD FOREIGN KEY (docNumber) REFERENCES docs(code);
+ALTER TABLE person ADD FOREIGN KEY (counties_id) REFERENCES countries(code);
+ALTER TABLE person ADD FOREIGN KEY (docNumber) REFERENCES  doc(code);
+ALTER TABLE doc ADD FOREIGN KEY (doc_id) REFERENCES docs(code);
 
 
 
