@@ -10,6 +10,9 @@ import java.util.Set;
 public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="id")
+    private Long id;
+
     @Column(name ="code")
     private Long code;
 
@@ -17,19 +20,24 @@ public class Document {
     @Column(name="docDate")
     private Date docDate;
 
-    @Column(name="docs_id")
-    private long docs_id;
 
     public Document() {
     }
 
-    public Document(Date docDate, long docs_id) {
+    public Document(Date docDate) {
         this.docDate = docDate;
-        this.docs_id = docs_id;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Long getCode() {
         return code;
+    }
+
+    public void setCode(Long code) {
+        this.code = code;
     }
 
     public Date getDocDate() {
@@ -40,16 +48,8 @@ public class Document {
         this.docDate = docDate;
     }
 
-    public long getDocs_id() {
-        return docs_id;
-    }
-
-    public void setDocs_id(long docs_id) {
-        this.docs_id = docs_id;
-    }
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="docs_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="docs_id", nullable = false)
     private TypeOfDocument typeOfDocument;
 
     public TypeOfDocument getTypeOfDocument() {

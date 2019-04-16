@@ -23,9 +23,6 @@ public class Office {
     @Column(name = "version", nullable = false)
     private Integer version;
 
-    @Column(name = "orgID", nullable = false)
-    private Long orgId;
-
     @Column(name = "name", length = 50, nullable = false)
     private String name;
 
@@ -41,10 +38,9 @@ public class Office {
     public Office() {
     }
 
-    public Office(Integer version, Long orgId, String name, String address, String phone, boolean isActive)
+    public Office(Integer version, String name, String address, String phone, boolean isActive)
     {
         this.version = version;
-        this.orgId = orgId;
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -53,14 +49,6 @@ public class Office {
 
     public Long getId() {
         return id;
-    }
-
-    public Long getOrgId() {
-        return orgId;
-    }
-
-    public void setOrgId(Long orgId) {
-        this.orgId = orgId;
     }
 
     public String getName() {
@@ -95,8 +83,8 @@ public class Office {
         isActive = active;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "orgID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "organization_id", nullable = false)
     private Organization organization;
 
     public Organization getOrganization() {
@@ -112,12 +100,14 @@ public class Office {
 
     public void addPerson(Person person)
     {
+        getPersons().add(person);
         person.setOffice(this);
-        persons.add(person);
+
     }
     public void removePerson(Person person)
     {
-        persons.remove(person);
+       getPersons().remove(person);
+       person.setOffice(null);
     }
 
     public Set<Person> getPersons() {

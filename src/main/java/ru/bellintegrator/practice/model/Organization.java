@@ -128,12 +128,14 @@ public class Organization {
 
     public void addOffice(Office office)
     {
+        getOffices().add(office);
         office.setOrganization(this);
-        offices.add(office);
+
     }
     public void removeOffice(Office office)
     {
-        offices.remove(office);
+        getOffices().remove(office);
+        office.setOrganization(null);
     }
 
     public Set<Office> getOffices() {

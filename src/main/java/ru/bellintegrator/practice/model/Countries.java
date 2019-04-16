@@ -12,6 +12,9 @@ public class Countries
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="id")
+    private Long id;
+
     @Column(name ="code")
     private Long code;
 
@@ -25,8 +28,16 @@ public class Countries
         this.name = name;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public Long getCode() {
         return code;
+    }
+
+    public void setCode(Long code) {
+        this.code = code;
     }
 
     public String getName() {
@@ -42,12 +53,14 @@ public class Countries
 
     public void addPerson(Person person)
     {
+        getPersons().add(person);
         person.setCountries(this);
-        persons.add(person);
+
     }
     public void removePerson(Person person)
     {
-        persons.remove(person);
+        getPersons().remove(person);
+        person.setCountries(null);
     }
 
     public Set<Person> getPersons() {

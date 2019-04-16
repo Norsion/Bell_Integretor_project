@@ -1,12 +1,16 @@
 package ru.bellintegrator.practice.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "TypeOfDocument")
 @Table(name="docs")
 public class TypeOfDocument {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="id")
+    private Long id;
+
     @Column(name ="code")
     private Long code;
 
@@ -20,8 +24,16 @@ public class TypeOfDocument {
         this.name = name;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public Long getCode() {
         return code;
+    }
+
+    public void setCode(Long code) {
+        this.code = code;
     }
 
     public String getName() {
@@ -32,14 +44,26 @@ public class TypeOfDocument {
         this.name = name;
     }
 
-    @OneToOne(mappedBy = "docs")
-    private Document document;
+    @OneToMany(mappedBy = "docs", cascade = CascadeType.ALL,  orphanRemoval=true)
+    private Set<Document> document;
 
-    public Document getDocument() {
+    public void addOffice(Document document)
+    {
+        getDocument().add(document);
+        document.setTypeOfDocument(this);
+
+    }
+    public void removeOffice(Document document)
+    {
+        getDocument().remove(document);
+        document.setTypeOfDocument(null);
+    }
+
+    public Set<Document> getDocument() {
         return document;
     }
 
-    public void setDocument(Document document) {
+    public void setDocument(Set<Document> document) {
         this.document = document;
     }
 }
