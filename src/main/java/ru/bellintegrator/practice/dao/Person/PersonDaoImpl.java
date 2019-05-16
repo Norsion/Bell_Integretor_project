@@ -51,7 +51,6 @@ public class PersonDaoImpl implements PersonDao {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Person> criteria = builder.createQuery(Person.class);
         Root<Person> person = criteria.from(Person.class);
-        //criteria.where()
 
         return criteria;
     }

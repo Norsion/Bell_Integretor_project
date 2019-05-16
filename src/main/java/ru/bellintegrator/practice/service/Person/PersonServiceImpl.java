@@ -44,13 +44,13 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional
-    public void savePerson(PersonView personView) {
+    public void savePerson(PersonView view) {
 
     }
 
     @Override
     @Transactional
-    public void updatePerson(PersonView personView) {
+    public void updatePerson(PersonView view) {
 
     }
 }

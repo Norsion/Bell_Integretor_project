@@ -41,7 +41,8 @@ public class PersonController {
 
     @ApiOperation(value = "Найти человека по id", httpMethod = "GET")
     @GetMapping("/{id}")
-    public PersonView getPersonById(@PathVariable Long id){return personService.getPersonById(id);}
+    public PersonView getPersonById(@PathVariable Long id){
+        return personService.getPersonById(id);}
 
     @ApiOperation(value = "Обновление списка людей", httpMethod = "POST")
     @ApiResponses(value = {
@@ -51,6 +52,7 @@ public class PersonController {
     })
     @PostMapping("/update")
     public void updatePerson(@RequestBody PersonView personView){
+
         personService.updatePerson(personView);
     }
 
@@ -61,6 +63,7 @@ public class PersonController {
             @ApiResponse(code = 500, message = "Failure")})
     @PostMapping("/save")
     public void savePerson(@RequestBody PersonView person) {
+
         personService.savePerson(person);
     }
 
