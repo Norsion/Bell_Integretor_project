@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity(name = "TypeOfDocument")
-@Table(name="docs")
+@Table(name="typeofdocument")
 public class TypeOfDocument {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +44,7 @@ public class TypeOfDocument {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "docs", cascade = CascadeType.ALL,  orphanRemoval=true)
+    @OneToMany(mappedBy = "typeofdocument", cascade = CascadeType.ALL,  orphanRemoval=true)
     private Set<Document> document;
 
     public void addOffice(Document document)

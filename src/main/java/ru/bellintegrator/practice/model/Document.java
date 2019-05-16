@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "Document")
-@Table(name = "doc")
+@Table(name = "document")
 public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,7 +60,7 @@ public class Document {
         this.typeOfDocument = typeOfDocument;
     }
 
-    @OneToMany(mappedBy = "doc", cascade = CascadeType.ALL,  orphanRemoval=true)
+    @OneToMany(mappedBy = "document", cascade = CascadeType.ALL,  orphanRemoval=true)
     private Set<Person> persons;
 
     public void addPerson(Person person)

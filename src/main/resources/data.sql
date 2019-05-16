@@ -1,29 +1,29 @@
 --тип документа
 
-INSERT INTO docs VALUES(1,03, 'Свидетельство о рождении');
-INSERT INTO docs VALUES(2,07, 'Военный билет');
-INSERT INTO docs VALUES(3,08, 'Временное удостоверение, выданное взамен военного билета');
-INSERT INTO docs VALUES(4,10, 'Паспорт иностранного гражданина');
-INSERT INTO docs VALUES(5,11, 'Свидетельство о рассмотрении ходатайства о признании лица беженцем на территории Российской Федерации по существу');
-INSERT INTO docs VALUES(6,12, 'Вид на жительство в Российской Федерации');
-INSERT INTO docs VALUES(7,13, 'Удостоверение беженца');
-INSERT INTO docs VALUES(8,15, 'Разрешение на временное проживание в Российской Федерации');
-INSERT INTO docs VALUES(9,18, 'Свидетельство о предоставлении временного убежища на территории Российской Федерации');
-INSERT INTO docs VALUES(10,21,'Паспорт гражданина Российской Федерации');
-INSERT INTO docs VALUES(11,23,'Свидетельство о рождении, выданное уполномоченным органом иностранного государства');
-INSERT INTO docs VALUES(12,24,'Удостоверение личности военнослужащего Российской Федерации');
-INSERT INTO docs VALUES(13,91,'Иные документы');
+INSERT INTO typeofdocument VALUES(1,03, 'Свидетельство о рождении');
+INSERT INTO typeofdocument VALUES(2,07, 'Военный билет');
+INSERT INTO typeofdocument VALUES(3,08, 'Временное удостоверение, выданное взамен военного билета');
+INSERT INTO typeofdocument VALUES(4,10, 'Паспорт иностранного гражданина');
+INSERT INTO typeofdocument VALUES(5,11, 'Свидетельство о рассмотрении ходатайства о признании лица беженцем на территории Российской Федерации по существу');
+INSERT INTO typeofdocument VALUES(6,12, 'Вид на жительство в Российской Федерации');
+INSERT INTO typeofdocument VALUES(7,13, 'Удостоверение беженца');
+INSERT INTO typeofdocument VALUES(8,15, 'Разрешение на временное проживание в Российской Федерации');
+INSERT INTO typeofdocument VALUES(9,18, 'Свидетельство о предоставлении временного убежища на территории Российской Федерации');
+INSERT INTO typeofdocument VALUES(10,21,'Паспорт гражданина Российской Федерации');
+INSERT INTO typeofdocument VALUES(11,23,'Свидетельство о рождении, выданное уполномоченным органом иностранного государства');
+INSERT INTO typeofdocument VALUES(12,24,'Удостоверение личности военнослужащего Российской Федерации');
+INSERT INTO typeofdocument VALUES(13,91,'Иные документы');
 
 --Документ
 
-INSERT INTO doc VALUES(1,6112,'2003-08-02',10);
-INSERT INTO doc VALUES(2,6122,'2005-11-20',10);
-INSERT INTO doc VALUES(3,3212,'2007-07-11',4);
-INSERT INTO doc VALUES(4,4321,'2001-12-07',4);
-INSERT INTO doc VALUES(5,2718,'2002-03-05',1);
-INSERT INTO doc VALUES(6,9275,'2004-05-15',1);
-INSERT INTO doc VALUES(7,6947,'2004-03-17',8);
-INSERT INTO doc VALUES(8,2766,'2003-02-24',8);
+INSERT INTO document VALUES(1,6112,'2003-08-02',10);
+INSERT INTO document VALUES(2,6122,'2005-11-20',10);
+INSERT INTO document VALUES(3,3212,'2007-07-11',4);
+INSERT INTO document VALUES(4,4321,'2001-12-07',4);
+INSERT INTO document VALUES(5,2718,'2002-03-05',1);
+INSERT INTO document VALUES(6,9275,'2004-05-15',1);
+INSERT INTO document VALUES(7,6947,'2004-03-17',8);
+INSERT INTO document VALUES(8,2766,'2003-02-24',8);
 
 --Страна
 

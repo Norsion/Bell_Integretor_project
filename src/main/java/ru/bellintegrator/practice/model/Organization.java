@@ -23,7 +23,6 @@ public class Organization {
      * Служебное поле hibernate
      */
     @Version
-    @Column(name = "version", nullable = false)
     private Integer version;
 
     @Column(name = "name", length = 50, nullable = false)
@@ -51,9 +50,8 @@ public class Organization {
 
     }
 
-    public Organization(Integer version, String name, String fullName, String inn, String kpp, String address, String phone, boolean isActive)
+    public Organization(String name, String fullName, String inn, String kpp, String address, String phone, boolean isActive)
         {
-        this.version = version;
         this.name = name;
         this.fullName = fullName;
         this.inn = inn;

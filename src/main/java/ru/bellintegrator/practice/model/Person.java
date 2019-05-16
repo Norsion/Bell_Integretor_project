@@ -18,7 +18,6 @@ public class Person {
      * Служебное поле hibernate
      */
     @Version
-    @Column(name = "version", nullable = false)
     private Integer version;
 
     @Column(name = "firstName", length = 50, nullable = false)
@@ -28,7 +27,7 @@ public class Person {
     private String secondName;
 
     @Column(name = "middleName", length = 50, nullable = false)
-    private String middletName;
+    private String middleName;
 
     @Column(name = "position", length = 50, nullable = false)
     private String position;
@@ -42,12 +41,11 @@ public class Person {
     public Person() {
     }
 
-    public Person(Integer version, String firstName, String secondName, String middletName, String position, String phone,  boolean isIdentified, Office office)
+    public Person(String firstName, String secondName, String middleName, String position, String phone,  boolean isIdentified, Office office)
     {
-        this.version = version;
         this.firstName = firstName;
         this.secondName = secondName;
-        this.middletName = middletName;
+        this.middleName = middleName;
         this.position = position;
         this.phone = phone;
         this.isIdentified = isIdentified;
@@ -76,11 +74,11 @@ public class Person {
     }
 
     public String getMiddletName() {
-        return middletName;
+        return middleName;
     }
 
     public void setMiddletName(String middletName) {
-        this.middletName = middletName;
+        this.middleName = middletName;
     }
 
     public String getPosition() {

@@ -20,7 +20,6 @@ public class Office {
      * Служебное поле hibernate
      */
     @Version
-    @Column(name = "version", nullable = false)
     private Integer version;
 
     @Column(name = "name", length = 50, nullable = false)
@@ -38,9 +37,8 @@ public class Office {
     public Office() {
     }
 
-    public Office(Integer version, String name, String address, String phone, boolean isActive)
+    public Office(String name, String address, String phone, boolean isActive)
     {
-        this.version = version;
         this.name = name;
         this.address = address;
         this.phone = phone;
