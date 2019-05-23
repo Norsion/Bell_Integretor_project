@@ -2,6 +2,9 @@ package ru.bellintegrator.practice.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,11 +37,12 @@ public class Office {
     @Column(name = "isActive")
     private boolean isActive;
 
-    public Office() {
+    public Office(@NotEmpty Long organizationId, @Size(max = 50) @NotEmpty(message = "name cannot be null") String name, @Size(max = 50) @NotEmpty(message = "address cannot be null") String address, @Size(max = 50) @NotNull(message = "phone cannot be null") String phone, @NotNull(message = "isActive cannot be null") boolean isActive) {
     }
 
-    public Office(String name, String address, String phone, boolean isActive)
+    public Office(Organization organizationId, String name, String address, String phone, boolean isActive)
     {
+        this.organizationId = organizationId;
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -83,17 +87,17 @@ public class Office {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id", nullable = false)
-    private Organization organization;
+    private Organization organizationId;
 
     public Organization getOrganization() {
-        return organization;
+        return organizationId;
     }
 
-    public void setOrganization(Organization organization) {
-        this.organization = organization;
+    public void setOrganization(Organization organizationId) {
+        this.organizationId = organizationId;
     }
 
-    @OneToMany(mappedBy = "office", cascade = CascadeType.ALL,  orphanRemoval=true)
+    @OneToMany(mappedBy = "officeId", cascade = CascadeType.ALL,  orphanRemoval=true)
     private Set<Person> persons;
 
     public void addPerson(Person person)

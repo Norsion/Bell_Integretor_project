@@ -48,7 +48,7 @@ public class Countries
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "countries", cascade = CascadeType.ALL,  orphanRemoval=true)
+    @OneToMany(mappedBy = "countriesId", cascade = CascadeType.ALL,  orphanRemoval=true)
     private Set<Person> persons;
 
     public void addPerson(Person person)

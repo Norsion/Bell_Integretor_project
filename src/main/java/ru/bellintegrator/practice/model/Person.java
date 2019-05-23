@@ -41,15 +41,16 @@ public class Person {
     public Person() {
     }
 
-    public Person(String firstName, String secondName, String middleName, String position, String phone,  boolean isIdentified, Office office)
+    public Person(Office officeId, String firstName, String secondName, String middleName, String position, String phone,  boolean isIdentified)
     {
+        this.officeId = officeId;
         this.firstName = firstName;
         this.secondName = secondName;
         this.middleName = middleName;
         this.position = position;
         this.phone = phone;
         this.isIdentified = isIdentified;
-        this.office = office;
+
     }
 
     public Long getId() {
@@ -101,32 +102,32 @@ public class Person {
         return isIdentified;
     }
 
-    public void setIdentified(boolean identified) {
-        isIdentified = identified;
+    public void setIdentified(boolean isIdentified) {
+        this.isIdentified = isIdentified;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "office_id", nullable = false)
-    private Office office;
+    private Office officeId;
 
     public Office getOffice() {
-        return office;
+        return officeId;
     }
 
-    public void setOffice(Office office) {
-        this.office = office;
+    public void setOffice(Office officeId) {
+        this.officeId = officeId;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "counties_id", nullable = false)
-    private Countries countries;
+    private Countries countriesId;
 
     public Countries getCountries() {
-        return countries;
+        return countriesId;
     }
 
-    public void setCountries(Countries countries) {
-        this.countries = countries;
+    public void setCountries(Countries countriesId) {
+        this.countriesId = countriesId;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)

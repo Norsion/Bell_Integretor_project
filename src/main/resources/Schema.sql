@@ -17,7 +17,7 @@ create TABLE IF NOT EXISTS office (
     name               VARCHAR(50)     NOT NULL COMMENT 'наименование офиса',
     address            VARCHAR(50)     NOT NULL COMMENT 'Адрес офиса',
     phone              VARCHAR(50)     NOT NULL COMMENT 'Телефон офиса',
-    isActive BOOLEAN                   NOT NULL COMMENT 'Активность'
+    isActive           BOOLEAN         NOT NULL COMMENT 'Активность'
 );
 
 create TABLE IF NOT EXISTS person (
@@ -66,8 +66,8 @@ create INDEX I_docNumber ON person (docNumber);
 alter table office add FOREIGN KEY (organization_id) REFERENCES organization(id);
 alter table person add FOREIGN KEY (office_id) REFERENCES office(id);
 alter table person add FOREIGN KEY (countries_id) REFERENCES countries(id);
-alter table person add FOREIGN KEY (docNumber) REFERENCES  doc(id);
-alter table doc add FOREIGN KEY (docs_id) REFERENCES docs(id);
+alter table person add FOREIGN KEY (docNumber) REFERENCES  document(id);
+alter table document add FOREIGN KEY (docs_id) REFERENCES typeofdocument(id);
 
 
 

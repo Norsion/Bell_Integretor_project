@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.util.List;
@@ -22,23 +23,53 @@ public class PersonView {
     public String firstName;
 
     @Size(max = 50)
-    @NotEmpty(message = "secondName cannot be null")
-    @ApiModelProperty(value = "Имя", example = "Иван")
+    @NotNull(message = "secondName cannot be null")
+    @ApiModelProperty(value = "Фамилия", example = "Иванов")
     public String secondName;
 
     @Size(max = 50)
-    @NotEmpty(message = "middleName cannot be null")
-    @ApiModelProperty(value = "Имя", example = "Иван")
+    @NotNull(message = "middleName cannot be null")
+    @ApiModelProperty(value = "Отчество", example = "Иванович")
     public String middleName;
 
+    @Size(max = 50)
+    @NotEmpty(message = "position cannot be null")
+    @ApiModelProperty(value = "Должность", example = "Менеджер")
     public String position;
+
+    @NotEmpty
+    @ApiModelProperty(value = "Идентификатор офиса", example = "11")
     public Long officeId;
-    public String docCode;
-    public Date docDate;
+
+    @NotEmpty
+    @ApiModelProperty(value = "Номер документа", example = "1")
+    public Long docNumber;
+
+    @NotNull
+    @ApiModelProperty(value = "Телефон", example = "89273453232")
     public String phone;
-    public String countriesCode;  //Код страны
+
+    @NotEmpty
+    @ApiModelProperty(value = "Код страны", example = "1")
+    public Long countriesCode;  //Код страны
+
+    @NotNull
+    @ApiModelProperty(value = "Проверка", example = "true")
     public boolean isIdentified;
 
-
-
+    @Override
+    public String toString() {
+        return "PersonView{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", position='" + position + '\'' +
+                ", officeId=" + officeId +
+                ", docCode='" + docNumber + '\'' +
+                ", phone='" + phone + '\'' +
+                ", countriesCode='" + countriesCode + '\'' +
+                ", isIdentified=" + isIdentified +
+                '}';
+    }
 }

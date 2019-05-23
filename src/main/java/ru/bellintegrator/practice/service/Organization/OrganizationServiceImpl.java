@@ -1,5 +1,7 @@
 package ru.bellintegrator.practice.service.Organization;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.practice.dao.Organization.OrganizationDao;
@@ -12,10 +14,11 @@ import java.util.List;
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
 
-    private OrganizationDao organizationDao;
+    private final OrganizationDao organizationDao;
     private final MapperFacade mapperFacade;
 
 
+    @Autowired
     public OrganizationServiceImpl(OrganizationDao organizationDao, MapperFacade mapperFacade) {
         this.organizationDao = organizationDao;
         this.mapperFacade = mapperFacade;
@@ -46,9 +49,13 @@ public class OrganizationServiceImpl implements OrganizationService {
             org.setKpp(view.kpp);
             org.setAddress(view.address);
             org.setPhone(view.phone);
-            org.setActive(view.isActive );
+            org.setActive(view.isActive);
+            organizationDao.updateOrganization(org);
         }
-        organizationDao.updateOrganization(org);
+        else {
+            throw new DataIntegrityViolationException("Организация с id: " + view.id + " не найдена.");
+        }
+
     }
 
     @Override

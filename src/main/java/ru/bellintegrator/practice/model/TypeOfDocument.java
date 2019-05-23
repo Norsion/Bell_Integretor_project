@@ -20,7 +20,8 @@ public class TypeOfDocument {
     public TypeOfDocument() {
     }
 
-    public TypeOfDocument(String name) {
+    public TypeOfDocument(Long code, String name) {
+        this.code = code;
         this.name = name;
     }
 
@@ -44,16 +45,16 @@ public class TypeOfDocument {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "typeofdocument", cascade = CascadeType.ALL,  orphanRemoval=true)
+    @OneToMany(mappedBy = "typeOfDocument", cascade = CascadeType.ALL,  orphanRemoval=true)
     private Set<Document> document;
 
-    public void addOffice(Document document)
+    public void addDocument(Document document)
     {
         getDocument().add(document);
         document.setTypeOfDocument(this);
 
     }
-    public void removeOffice(Document document)
+    public void removeDocument(Document document)
     {
         getDocument().remove(document);
         document.setTypeOfDocument(null);

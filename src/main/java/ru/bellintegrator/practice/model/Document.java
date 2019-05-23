@@ -24,7 +24,9 @@ public class Document {
     public Document() {
     }
 
-    public Document(Date docDate) {
+    public Document(Long code, Date docDate)
+    {
+        this.code = code;
         this.docDate = docDate;
     }
 

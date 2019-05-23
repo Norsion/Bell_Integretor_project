@@ -121,7 +121,7 @@ public class Organization {
         isActive = active;
     }
 
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL,  orphanRemoval=true)
+    @OneToMany(mappedBy = "organizationId", cascade = CascadeType.ALL,  orphanRemoval=true)
     private Set<Office>  offices;
 
     public void addOffice(Office office)

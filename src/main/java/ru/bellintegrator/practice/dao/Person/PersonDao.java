@@ -20,11 +20,11 @@ public interface PersonDao {
      * @param secondName
      * @param middleName
      * @param position
-     * @param docCode
+     * @param docNumber
      * @param countriesCode
      * @return
      */
-    List<Person> getPersonByFilter(Long officeId, String firstName, String secondName, String middleName, String position, String docCode, String countriesCode);
+    List<Person> getPersonByFilter(Long officeId, String firstName, String secondName, String middleName, String position, Long docNumber, Long countriesCode);
 
     /**
      * Сохраняем данные о человеке

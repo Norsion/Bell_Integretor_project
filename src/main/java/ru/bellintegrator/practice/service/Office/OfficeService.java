@@ -18,18 +18,18 @@ public interface OfficeService {
     List<OfficeView> getOffices(OfficeView officeView);
 
     /**
-     * @param officeView
+     * @param view
      * @return office
      */
-    void updateOffice(OfficeView officeView);
+    void updateOffice(OfficeView view);
 
 
 
     /**
-     * @param officeView
+     * @param view
      * @return office
      */
-    void saveOffice(OfficeView officeView);
+    void saveOffice(OfficeView view);
 
 
 }
